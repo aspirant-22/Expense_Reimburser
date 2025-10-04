@@ -1,4 +1,5 @@
-# 🧾 Xpensly – Smart Expense Management System
+# 🧾 Xpensly – Smart Expense Management System 
+### Made by Garima Mittal
 
 ## 💡 Overview
 
@@ -59,25 +60,6 @@ npm run dev
 
 ###### Server (Node.js backend):
 node server.js
-
-### 📁 Folder Structure
-
-Expense_Reimburser/
-xpensly/
-│
-├── client/               # React Frontend
-│   ├── src/
-│   │   ├── pages/        # Pages (Home, Login, Dashboard)
-│   │   ├── components/   # UI components
-│   │   └── App.jsx       # Main React file
-│   └── package.json
-│
-├── server/               # Express Backend
-│   ├── models/           # Mongoose models (User, Request, Rules)
-│   ├── routes/           # API endpoints
-│   └── server.js         # Entry point
-│
-└── README.md
 
 ### 🌟 UI Highlights
 
