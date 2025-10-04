@@ -5,7 +5,9 @@ import User from "./User.js";
 
 const Approval = sequelize.define("Approval", {
   status: { type: DataTypes.STRING, defaultValue: "Pending" }, // Pending | Approved | Rejected
-  comment: DataTypes.STRING
+  comment: DataTypes.STRING,
+  approverId: DataTypes.INTEGER,
+  sequenceStep: DataTypes.INTEGER,
 });
 
 Approval.belongsTo(Expense, { foreignKey: "expenseId" });

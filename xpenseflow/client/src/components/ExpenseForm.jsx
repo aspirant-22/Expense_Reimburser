@@ -20,7 +20,7 @@ export default function ExpenseForm({ addExpense }) {
       const res = await fetch("http://localhost:5000/api/expenses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form,employee: form.employeeName, userId: 1 }) // Make dynamic later
+        body: JSON.stringify({ ...form,employee: form.employee, userId: 1 }) // Make dynamic later
       });
 
       if (!res.ok) {
@@ -58,7 +58,7 @@ export default function ExpenseForm({ addExpense }) {
       <input
         className="border p-2 m-1 w-full"
         placeholder="Employee Name"
-        value={form.employee}
+        value={form.employee || ""}
         onChange={(e) => setForm({ ...form, employee: e.target.value })}
       />
 

@@ -20,6 +20,6 @@ const Expense = sequelize.define("Expense", {
   userId: { type: DataTypes.INTEGER }
 });
 
-Expense.belongsTo(User, { foreignKey: "userId" });
+Expense.belongsTo(User, { foreignKey: "employee" });
 
 export default Expense;
