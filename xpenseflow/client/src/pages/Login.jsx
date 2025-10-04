@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <h2 className="text-2xl mb-4 font-bold">XpenseFlow Login</h2>
       <input
         type="email"

@@ -1,4 +1,10 @@
+import React from "react";
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import ExpenseForm from "../components/ExpenseForm";
+import ExpenseList from "../components/ExpenseList";
+import ApprovalList from "../components/ApprovalList";
+
 
 export default function Dashboard() {
   const [expenses, setExpenses] = useState([]);
@@ -6,20 +12,29 @@ export default function Dashboard() {
   useEffect(() => {
     fetch("http://localhost:5000/api/expenses")
       .then(res => res.json())
-      .then(data => setExpenses(data));
+      .then(data => setExpenses(data))
+      .catch(err => console.error(err));
   }, []);
 
+  // Add a new expense to the list
+  const addExpense = (expense) => {
+    setExpenses([...expenses, expense]);
+  };
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Expense Dashboard</h1>
-      <div className="grid gap-3">
-        {expenses.map((exp, i) => (
-          <div key={i} className="border p-4 rounded-lg shadow-sm">
-            <p><b>{exp.category}</b> - {exp.description}</p>
-            <p>Amount: {exp.amount} {exp.currency} → ₹{exp.convertedAmount}</p>
-            <p>Status: {exp.status}</p>
-          </div>
-        ))}
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Left side: Expense Form + Expense List */}
+        <div className="md:col-span-2">
+          <ExpenseForm addExpense={addExpense} />
+          <ExpenseList expenses={expenses} />
+        </div>
+
+        {/* Right side: Pending Approvals */}
+        <div>
+          <ApprovalList />
+        </div>
       </div>
     </div>
   );
