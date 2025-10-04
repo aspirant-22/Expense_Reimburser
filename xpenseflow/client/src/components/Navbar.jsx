@@ -7,7 +7,7 @@ export default function Navbar() {
       <span className="font-bold">XpenseFlow</span>
       <div className="space-x-4">
         <Link to="/dashboard">Dashboard</Link>
-        <Link to="/admin">Admin</Link>
+        
       </div>
     </nav>
   );
