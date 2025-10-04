@@ -6,7 +6,16 @@ const router = express.Router();
 
 // Create expense
 router.post("/", async (req, res) => {
-  const { amount, currency, category, description, date, userId } = req.body;
+  const { amount,
+    currency,
+    category,
+    description,
+    date,
+    userId,
+    employee,
+    paidBy,
+    remarks,
+    status } = req.body;
   try {
     const rateRes = await fetch(`https://api.exchangerate-api.com/v4/latest/${currency}`);
     const data = await rateRes.json();
@@ -19,7 +28,11 @@ router.post("/", async (req, res) => {
       category,
       description,
       date,
-      userId
+      userId,
+      employee,
+      paidBy,
+      remarks,
+      status: status || "Pending"
     });
     res.json(expense);
   } catch (err) {

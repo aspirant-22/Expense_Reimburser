@@ -3,14 +3,21 @@ import sequelize from "../config/db.js";
 import User from "./User.js";
 
 const Expense = sequelize.define("Expense", {
-  amount: DataTypes.FLOAT,
-  currency: DataTypes.STRING,
-  convertedAmount: DataTypes.FLOAT,
-  category: DataTypes.STRING,
-  description: DataTypes.STRING,
-  date: DataTypes.DATE,
-  status: { type: DataTypes.STRING, defaultValue: "Pending" },
-  receiptURL: DataTypes.STRING
+  employee: { type: DataTypes.STRING, allowNull: true }, // Name of employee
+  description: { type: DataTypes.STRING, allowNull: false },
+  date: { type: DataTypes.DATEONLY, allowNull: false },
+  category: { type: DataTypes.STRING, allowNull: false },
+  paidBy: { type: DataTypes.STRING, allowNull: true },
+  remarks: { type: DataTypes.STRING, allowNull: true },
+  amount: { type: DataTypes.FLOAT, allowNull: false },
+  currency: { type: DataTypes.STRING, allowNull: false },
+  convertedAmount: { type: DataTypes.FLOAT, allowNull: true },
+  status: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "Pending"
+    },
+  userId: { type: DataTypes.INTEGER }
 });
 
 Expense.belongsTo(User, { foreignKey: "userId" });
