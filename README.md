@@ -28,12 +28,12 @@ It’s built to eliminate manual approvals, reduce delays, and provide full tran
 
 ### 🧱 Tech Stack
 
-Category	->        Technology
-Frontend	   :      React.js, Tailwind CSS
-Backend	       :      Node.js, Express.js
-Icons & UI	   :      Lucide React, ShadCN-inspired cards
-Routing	       :       React Router DOM
-Tooling	       :       Vite for fast development builds
+   Category	      ->        Technology
+- Frontend	     :      React.js, Tailwind CSS
+- Backend	       :      Node.js, Express.js
+- Icons & UI	   :      Lucide React, ShadCN-inspired cards
+- Routing	       :       React Router DOM
+- Tooling	       :       Vite for fast development builds
 
 ### ⚙️ Installation & Setup
 
@@ -45,21 +45,21 @@ cd xpensly
 
 - 3️⃣ Install dependencies:
 
-#### For the client:
-cd client
-npm install
+  - ###### For the client:
+      - cd client
+      - npm install
 
-#### For the server:
-cd ../server
-npm install
+  - ###### For the server:
+      - cd ../server
+      - npm install
 
 - 4️⃣ Start both servers:
 
-###### Client (React app):
-npm run dev
+  - ###### Client (React app):
+    - npm run dev
 
-###### Server (Node.js backend):
-node server.js
+  - ###### Server (Node.js backend):
+    - node server.js
 
 ### 🌟 UI Highlights
 
