@@ -18,7 +18,7 @@ export default function Login({ userType }) {
 
     // For hackathon demo, just navigate
     if (userType === "employee") navigate("/dashboard");
-    else if (userType === "manager") navigate("/manager-dashboard");
+    else if (userType === "manager") navigate("/ManagerDashboard");
     else if (userType === "admin") navigate("/AdminPanel");
   };
 

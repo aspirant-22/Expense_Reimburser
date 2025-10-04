@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -7,11 +6,23 @@ export default function Dashboard() {
   const [expenses, setExpenses] = useState([]);
   const navigate = useNavigate();
 
+  const fetchExpenses = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/expenses");
+      const data = await res.json();
+      setExpenses(data);
+    } catch (err) {
+      console.error("Failed to fetch expenses", err);
+    }
+  };
+
   useEffect(() => {
-    fetch("http://localhost:5000/api/expenses")
-      .then((res) => res.json())
-      .then((data) => setExpenses(data))
-      .catch((err) => console.error(err));
+    fetchExpenses(); // Initial fetch
+
+    // Polling every 5 seconds to refresh status
+    const interval = setInterval(fetchExpenses, 5000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   const pendingApprovals = expenses.filter((e) => e.status === "Pending");
@@ -49,15 +60,13 @@ export default function Dashboard() {
             <tbody>
               {expenses.map((exp, i) => (
                 <tr key={i} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-2 border">{exp.employee || "Unknown"}</td>
+                  <td className="px-4 py-2 border">{exp.employeeName || "User"}</td>
                   <td className="px-4 py-2 border">{exp.description}</td>
                   <td className="px-4 py-2 border">{exp.date}</td>
                   <td className="px-4 py-2 border">{exp.category}</td>
                   <td className="px-4 py-2 border">{exp.paidBy || "Self"}</td>
                   <td className="px-4 py-2 border">{exp.remarks || "-"}</td>
-                  <td className="px-4 py-2 border">
-                    {exp.amount} {exp.currency}
-                  </td>
+                  <td className="px-4 py-2 border">{exp.amount} {exp.currency}</td>
                   <td
                     className={`px-4 py-2 border font-semibold ${
                       exp.status === "Approved"
@@ -84,8 +93,7 @@ export default function Dashboard() {
             pendingApprovals.map((p, i) => (
               <div key={i} className="border-b py-2">
                 <p>
-                  <b>{p.category}</b> - {p.description} ({p.amount}{" "}
-                  {p.currency})
+                  <b>{p.category}</b> - {p.description} ({p.amount} {p.currency})
                 </p>
               </div>
             ))
