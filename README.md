@@ -38,7 +38,7 @@ Tooling	       :       Vite for fast development builds
 ### ⚙️ Installation & Setup
 
 - 1️⃣ Clone the repository:
-git clone https://github.com/your-username/xpensly.git
+(https://github.com/aspirant-22/Expense_Reimburser)
 
 - 2️⃣ Navigate to the project directory:
 cd xpensly
