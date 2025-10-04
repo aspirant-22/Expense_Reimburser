@@ -1,18 +1,18 @@
 import express from "express";
 import Expense from "../models/Expense.js";
+import User from "../models/User.js";  
 import fetch from "node-fetch";
 
 const router = express.Router();
 
 // Create expense
 router.post("/", async (req, res) => {
-  const { amount,
+  const { employee , amount,
     currency,
     category,
     description,
     date,
     userId,
-    employee,
     paidBy,
     remarks,
     status } = req.body;
@@ -22,6 +22,7 @@ router.post("/", async (req, res) => {
     const convertedAmount = amount * data.rates["INR"]; // Convert to INR
 
     const expense = await Expense.create({
+        employee,
       amount,
       currency,
       convertedAmount,
@@ -29,7 +30,6 @@ router.post("/", async (req, res) => {
       description,
       date,
       userId,
-      employee,
       paidBy,
       remarks,
       status: status || "Pending"
@@ -42,8 +42,14 @@ router.post("/", async (req, res) => {
 
 // Get all expenses
 router.get("/", async (req, res) => {
-  const expenses = await Expense.findAll();
-  res.json(expenses);
+  try {
+    const expenses = await Expense.findAll({
+      include: [{ model: User, attributes: ["name"] }] // include User's name
+    });
+    res.json(expenses);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 export default router;

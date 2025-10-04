@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddExpense() {
   const [form, setForm] = useState({
+    employee: "",
     date: "",
     description: "",
     category: "",
@@ -31,7 +32,12 @@ export default function AddExpense() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-[500px]">
         <h2 className="text-xl font-bold mb-4">Add New Expense</h2>
-
+        <input
+          type="text"
+          placeholder="Employee"
+          className="border p-2 mb-3 rounded w-full"
+          onChange={(e) => setForm({ ...form, employee: e.target.value })}
+        />
         <input
           type="date"
           className="border p-2 mb-3 rounded w-full"

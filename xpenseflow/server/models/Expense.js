@@ -3,7 +3,7 @@ import sequelize from "../config/db.js";
 import User from "./User.js";
 
 const Expense = sequelize.define("Expense", {
-  employee: { type: DataTypes.STRING, allowNull: true }, // Name of employee
+  employee: { type: DataTypes.STRING, allowNull: false }, // Name of employee
   description: { type: DataTypes.STRING, allowNull: false },
   date: { type: DataTypes.DATEONLY, allowNull: false },
   category: { type: DataTypes.STRING, allowNull: false },

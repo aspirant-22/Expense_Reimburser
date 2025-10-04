@@ -15,11 +15,12 @@ export default function ExpenseForm({ addExpense }) {
   });
 
   const handleSubmit = async () => {
+     if (!form.employeeName) return alert("Please enter your name");
     try {
       const res = await fetch("http://localhost:5000/api/expenses", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, userId: 1 }) // Make dynamic later
+        body: JSON.stringify({ ...form,employee: form.employeeName, userId: 1 }) // Make dynamic later
       });
 
       if (!res.ok) {

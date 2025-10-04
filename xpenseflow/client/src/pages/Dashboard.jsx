@@ -49,7 +49,7 @@ export default function Dashboard() {
             <tbody>
               {expenses.map((exp, i) => (
                 <tr key={i} className="border-b hover:bg-gray-50">
-                  <td className="px-4 py-2 border">{exp.employee || "User1"}</td>
+                  <td className="px-4 py-2 border">{exp.employee || "Unknown"}</td>
                   <td className="px-4 py-2 border">{exp.description}</td>
                   <td className="px-4 py-2 border">{exp.date}</td>
                   <td className="px-4 py-2 border">{exp.category}</td>
